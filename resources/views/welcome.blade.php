@@ -12,7 +12,7 @@
         @vite(['resources/css/app.css','resources/js/app.js'])
     </head>
     <body class="antialiased w-[100vw] h-[100vh] flex justify-center items-center bg-gray-200">
-        <form class="flex flex-col items-center w-[90%] md:w-96 justify-center gap-7 bg-white p-6 pt-10 pb-10 rounded-xl">
+        <form class="flex flex-col items-center w-[90%] md:w-96 justify-center bg-white p-6 pt-10 pb-10 rounded-xl">
             <input
                 type="text"
                 required
@@ -52,8 +52,8 @@
                 class="w-[80%] file:bg-emerald-500 file:border-none file:text-white file:cursor-pointer
                 file:p-1 file:pr-5 file:pl-5 file:rounded-xl hover:file:bg-emerald-600 file:transition-colors"
             />
-            <p class="hidden" id="typeError">This file format is not allowed</p>
-            <p class="hidden" id="fileError">File is too big (max 5mb)</p>
+            <p class="hidden error" id="typeError">This file format is not allowed</p>
+            <p class="hidden error" id="fileError">File is too big (max 5mb)</p>
             <button
                 class="hover:bg-emerald-600 transition-colors bg-emerald-500
                 text-white p-2 pr-12 pl-12 text-xl rounded-xl"
