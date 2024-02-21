@@ -51,7 +51,7 @@ $('form').validate({
         },
         text: {
             required: true,
-            maxlength: 500
+            maxlength: 500,
         },
         file: {
             required: true
