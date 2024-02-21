@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-form {
+form, #loading {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
@@ -17,4 +17,31 @@ input,textarea,button {
     text-align : left;
     margin-top : .5rem;
     margin-bottom : .5rem;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite
+}
+.loader::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    border-radius: 50%;
+    inset: 0px;
+    border: 5px solid rgb(16,185,129);
+    border-bottom-color: transparent;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

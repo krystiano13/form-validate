@@ -35,7 +35,6 @@ $('form').submit(e => {
     if(!validateFile()) return;
 
     const data = new FormData($('form')[0]);
-    data.append('test', 'test');
 
     $.ajax({
         url: '/send',
