@@ -2,10 +2,18 @@ import './bootstrap';
 import $ from 'jquery';
 import jqueryValidate from "jquery-validation";
 
-function validateFileSize() {
+function validateFile() {
     const file = document.querySelector('#fileInput').files[0];
     const maxSize = 5_242_880;
 
+    // check file type
+    if(file.type !== 'image/jpeg' && file.type !== 'application/pdf') {
+        $('#typeError').removeClass('hidden');
+    } else {
+        !$('#typeError').hasClass('hidden') && $('#typeError').addClass('hidden');
+    }
+
+    // check file size
     if(file.size > maxSize) {
         $('#fileError').removeClass('hidden');
     } else {
@@ -15,7 +23,7 @@ function validateFileSize() {
 
 $('form').submit(e => {
     e.preventDefault();
-    validateFileSize();
+    validateFile();
 })
 
 $('form').validate({
