@@ -1,60 +1,44 @@
 import './bootstrap';
 import $ from 'jquery';
 import jqueryValidate from "jquery-validation";
-
-function validateFile() {
-    const file = document.querySelector('#fileInput').files[0];
-    const maxSize = 5_242_880; // in bytes
-
-    if(!file) {
-        return false;
-    }
-
-    // check file type
-    if(file.type !== 'image/jpeg' && file.type !== 'application/pdf') {
-        $('#typeError').removeClass('hidden');
-    } else {
-        !$('#typeError').hasClass('hidden') && $('#typeError').addClass('hidden');
-        return false;
-    }
-
-    // check file size
-    if(file.size > maxSize) {
-        $('#fileError').removeClass('hidden');
-    } else {
-        !$('#fileError').hasClass('hidden') && $('#fileError').addClass('hidden');
-        return false;
-    }
-
-    return true;
-}
+import { validationRules } from "@/validationRules.js";
+import { validateFile } from "@/validateFile.js";
 
 $('form').submit(e => {
     e.preventDefault();
-    validateFile();
+    if(!validateFile()) return;
+
+    const data = new FormData($('form')[0]);
+
+    $('#loading').removeClass('hidden');
+
+    $.ajax({
+        url: '/send',
+        method: 'POST',
+        data: data,
+        cache: false,
+        processData: false,
+        contentType: false,
+        error : (jqXHR) => {
+            const errors = jqXHR.responseJSON.errors;
+            if(!errors) return;
+            $('#errors').empty();
+            Object.keys(errors).forEach(key => {
+                const item = errors[key];
+                $('#errors').append(`<p class="error">${item}</p>`);
+                $('#loading').addClass('hidden');
+            })
+        },
+        success: () => {
+            $('#status').removeClass('hidden');
+        }
+    }).then(data => {
+        console.log(data);
+        $('#loading').addClass('hidden');
+    })
 })
 
 $('form').validate({
     errorClass: "error",
-    rules: {
-        name: {
-            required: true,
-            maxlength: 100
-        },
-        email: {
-            required: true,
-            email: true
-        },
-        phone: {
-            required: true,
-            digits: true
-        },
-        text: {
-            required: true,
-            maxlength: 500
-        },
-        file: {
-            required: true
-        }
-    }
+    rules: validationRules
 });

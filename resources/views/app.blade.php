@@ -12,7 +12,22 @@
         @vite(['resources/css/app.css','resources/js/app.js'])
     </head>
     <body class="antialiased w-[100vw] h-[100vh] flex justify-center items-center bg-gray-200">
-        <form class="flex flex-col items-center w-[90%] md:w-96 justify-center bg-white p-6 pt-10 pb-10 rounded-xl">
+        <form enctype="multipart/form-data" method="POST" class="relative flex flex-col items-center w-[90%] md:w-96 justify-center bg-white p-6 pt-10 pb-10 rounded-xl">
+            @csrf
+            <div
+                id="loading"
+                class="absolute flex flex-col items-center w-[100%] h-[100%] justify-center bg-white
+                p-6 pt-10 pb-10 rounded-xl hidden"
+            >
+                <span class="loader"></span>
+            </div>
+            <div
+                id="status"
+                class="absolute flex flex-col items-center w-[100%] h-[100%] justify-center bg-emerald-500
+                p-6 pt-10 pb-10 rounded-xl hidden"
+            >
+                <p class="text-white font-bold text-3xl">Message Sent !</p>
+            </div>
             <input
                 type="text"
                 required
@@ -46,7 +61,7 @@
             <input
                 id="fileInput"
                 type="file"
-                accept=".pdf, .jpg"
+                accept=".jpg, .pdf"
                 name="file"
                 required
                 class="w-[80%] file:bg-emerald-500 file:border-none file:text-white file:cursor-pointer
@@ -54,6 +69,8 @@
             />
             <p class="hidden error" id="typeError">This file format is not allowed</p>
             <p class="hidden error" id="fileError">File is too big (max 5mb)</p>
+            <section id="errors" class="w-[100%] flex flex-col items-center">
+            </section>
             <button
                 class="hover:bg-emerald-600 transition-colors bg-emerald-500
                 text-white p-2 pr-12 pl-12 text-xl rounded-xl"
