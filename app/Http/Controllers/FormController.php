@@ -17,7 +17,7 @@ class FormController extends Controller
             'email' => ['required', 'email'],
             'text' => ['required', 'max:500'],
             'phone' => ['required', 'numeric'],
-            'file' => ['file', 'size:5120', 'mimes:jpg, pdf']
+            'file' => ['file', 'max:5120', 'mimes:jpg,pdf']
         ]);
 
         if($validator -> fails()) {
@@ -30,7 +30,8 @@ class FormController extends Controller
 
         return response([
             'status' => true,
-            'message' => 'Message Sent'
+            'message' => 'Message Sent',
+            'file' => $request -> all()
         ], 200);
     }
 }

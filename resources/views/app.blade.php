@@ -12,7 +12,7 @@
         @vite(['resources/css/app.css','resources/js/app.js'])
     </head>
     <body class="antialiased w-[100vw] h-[100vh] flex justify-center items-center bg-gray-200">
-        <form class="flex flex-col items-center w-[90%] md:w-96 justify-center bg-white p-6 pt-10 pb-10 rounded-xl">
+        <form enctype="multipart/form-data" method="POST" class="flex flex-col items-center w-[90%] md:w-96 justify-center bg-white p-6 pt-10 pb-10 rounded-xl">
             <input
                 type="text"
                 required
@@ -46,7 +46,7 @@
             <input
                 id="fileInput"
                 type="file"
-                accept=".pdf, .jpg"
+                accept=".jpg, .pdf"
                 name="file"
                 required
                 class="w-[80%] file:bg-emerald-500 file:border-none file:text-white file:cursor-pointer
