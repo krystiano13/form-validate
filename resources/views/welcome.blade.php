@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css','resources/js/app.js'])
     </head>
     <body class="antialiased w-[100vw] h-[100vh] flex justify-center items-center bg-gray-200">
         <form class="flex flex-col items-center w-[90%] md:w-96 justify-center gap-7 bg-white p-6 pt-10 pb-10 rounded-xl">
@@ -47,6 +47,7 @@
                 type="file"
                 accept=".pdf, .jpg"
                 name="file"
+                required
                 class="w-[80%] file:bg-emerald-500 file:border-none file:text-white file:cursor-pointer
                 file:p-1 file:pr-5 file:pl-5 file:rounded-xl hover:file:bg-emerald-600 file:transition-colors"
             />
