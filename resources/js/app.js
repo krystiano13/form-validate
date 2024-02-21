@@ -31,6 +31,7 @@ $('form').submit(e => {
         },
         success: () => {
             $('#status').removeClass('hidden');
+            $('#status').addClass('appear');
         }
     }).then(data => {
         console.log(data);
