@@ -12,6 +12,39 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased w-[100vw] h-[100vh]">
-
+        <form>
+            <input
+                type="text"
+                required
+                maxlength="100"
+                placeholder="First Name and Last Name"
+                name="name"
+            />
+            <input
+                type="text"
+                required
+                maxlength="9"
+                placeholder="Phone Number"
+                name="phone"
+            />
+            <input
+                type="email"
+                required
+                placeholder="Email Address"
+                name="email"
+            />
+            <textarea
+                required
+                placeholder="Your message"
+                name="text"
+                maxlength="500"
+            >
+            </textarea>
+            <input
+                type="file"
+                accept="image/jpeg, application/pdf, .pdf, .jpg"
+                name="file"
+            />
+        </form>
     </body>
 </html>
