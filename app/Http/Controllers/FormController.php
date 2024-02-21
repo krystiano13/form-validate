@@ -16,7 +16,7 @@ class FormController extends Controller
             'name' => ['required', 'max:100'],
             'email' => ['required', 'email'],
             'text' => ['required', 'max:500'],
-            'phone' => ['required', 'numeric'],
+            'phone' => ['required', 'numeric', 'integer'],
             'file' => ['file', 'max:5120', 'mimes:jpg,pdf']
         ]);
 

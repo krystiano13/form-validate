@@ -2,39 +2,15 @@ import './bootstrap';
 import $ from 'jquery';
 import jqueryValidate from "jquery-validation";
 import { validationRules } from "@/validationRules.js";
-
-function validateFile() {
-    const file = document.querySelector('#fileInput').files[0];
-    const maxSize = 5_242_880; // in bytes
-
-    if(!file) {
-        return false;
-    }
-
-    // check file type
-    if(file.type !== 'image/jpeg' && file.type !== 'application/pdf') {
-        $('#typeError').removeClass('hidden');
-        return false;
-    } else {
-        !$('#typeError').hasClass('hidden') && $('#typeError').addClass('hidden');
-    }
-
-    // check file size
-    if(file.size > maxSize) {
-        $('#fileError').removeClass('hidden');
-        return false;
-    } else {
-        !$('#fileError').hasClass('hidden') && $('#fileError').addClass('hidden');
-    }
-
-    return true;
-}
+import { validateFile } from "@/validateFile.js";
 
 $('form').submit(e => {
     e.preventDefault();
     if(!validateFile()) return;
 
     const data = new FormData($('form')[0]);
+
+    $('#loading').removeClass('hidden');
 
     $.ajax({
         url: '/send',
@@ -43,11 +19,22 @@ $('form').submit(e => {
         cache: false,
         processData: false,
         contentType: false,
-        error : function(jqXHR){
-            console.log(jqXHR)
+        error : (jqXHR) => {
+            const errors = jqXHR.responseJSON.errors;
+            if(!errors) return;
+            $('#errors').empty();
+            Object.keys(errors).forEach(key => {
+                const item = errors[key];
+                $('#errors').append(`<p class="error">${item}</p>`);
+                $('#loading').addClass('hidden');
+            })
+        },
+        success: () => {
+            $('#status').removeClass('hidden');
         }
     }).then(data => {
         console.log(data);
+        $('#loading').addClass('hidden');
     })
 })
 

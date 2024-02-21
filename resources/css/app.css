@@ -6,6 +6,10 @@ form, #loading {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
+#status {
+    transition: opacity 500ms;
+}
+
 input,textarea,button {
     margin-top : 1rem;
     margin-bottom: 1rem;
@@ -14,9 +18,10 @@ input,textarea,button {
 .error {
     color: rgb(239,68,68);
     width : 80%;
+    font-size : 0.8rem;
     text-align : left;
-    margin-top : .5rem;
-    margin-bottom : .5rem;
+    margin-top : .4rem;
+    margin-bottom : .4rem;
 }
 
 .loader {
