@@ -44,6 +44,7 @@
                 class="border-2 p-2 w-[80%] rounded-lg max-h-52 min-h-12"
             ></textarea>
             <input
+                id="fileInput"
                 type="file"
                 accept=".pdf, .jpg"
                 name="file"
@@ -51,6 +52,7 @@
                 class="w-[80%] file:bg-emerald-500 file:border-none file:text-white file:cursor-pointer
                 file:p-1 file:pr-5 file:pl-5 file:rounded-xl hover:file:bg-emerald-600 file:transition-colors"
             />
+            <p class="hidden" id="fileError">File is too big (max 5mb)</p>
             <button
                 class="hover:bg-emerald-600 transition-colors bg-emerald-500
                 text-white p-2 pr-12 pl-12 text-xl rounded-xl"
